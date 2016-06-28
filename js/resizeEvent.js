@@ -78,7 +78,7 @@ var getNames = function (element) {
 
 window.createResizeEvent = function(element){
     var onContainerResize = function(){
-        triggerEvent(child, "resize");
+        triggerEvent(element, "resize");
     };
     var names = getNames(element);
     element.style[names.styleProperty] = "width 0.0001s";
