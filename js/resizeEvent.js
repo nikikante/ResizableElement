@@ -75,14 +75,45 @@ var getNames = function (element) {
         };
     }
 };
+var createDummyResizeElement = function(parentElement) {
+    if(parentElement.__resizeElement){
+        return;
+    }
+    
+    var resizeElement = document.createElement("div");
+    resizeElement.style.position = "absolute";
+    resizeElement.style.visibility = "hidden";
+    resizeElement.style.top = "0";
+    resizeElement.style.left = "0";
+    resizeElement.style.height = "100%";
+    resizeElement.style.width = "100%";
+    resizeElement.style.zIndex = "10000";
+    
+    parentElement.style.position = "relative";
+    parentElement.appendChild(resizeElement);
+    parentElement.__resizeElement = resizeElement;
+    return resizeElement;
+}
+
 
 window.createResizeEvent = function(element){
+    if(element.__resizeElement){
+        return;
+    }
+
     var onContainerResize = function(){
         triggerEvent(element, "resize");
     };
-    var names = getNames(element);
-    element.style[names.styleProperty] = "width 0.0001s";
-    addEvent(parent, "transitionend", onContainerResize);
+
+    var names = getNames(element),
+        target = element;
+    //Trying to add dummy element to preserve original event transition
+    //It does not work, because transition is not triggered on width/height 100%(right, bottom does not work either).
+    //var resizeElement = createDummyResizeElement(element);  
+    //target = resizeElement;
+    
+    addEvent(target, names.eventName, onContainerResize);
+    element.style.setProperty(names.styleProperty, "width, height 0.0001s linear");
 };
 
 }(window));

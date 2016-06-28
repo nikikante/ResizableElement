@@ -1,3 +1,3 @@
 
     .container { background: #a33; resize: both; }
-    .editor { background: #045; color:#fff; opacity: 0.6; }
+    .editor { background: #045; color:#fff; opacity: 0.6; display: inline-block }
