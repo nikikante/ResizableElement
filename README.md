@@ -18,3 +18,8 @@ TODO:
 - test on Opera
 - test on Safari
 - test on Mobile devices
+- some automatic testing
+
+REQUIREMENTS FOR TESTING:
+- npm
+- http-server (npm install http-server -g)
