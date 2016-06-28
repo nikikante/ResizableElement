@@ -8,81 +8,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         
+    <button id="btnTrigerResize">Trigger resize event</button>
+    <button id="btnResizeContainer">Resize container</button>
     <div class="container" >
         <div class="editor" id="editor" style="width:300px; height:500px;position:relative">Some text</div>
     </div>
 
-    <button id="btnTrigerResize">Trigger resize event</button>
-    <button id="btnResizeContainer">Resize container</button>
-    
-    <style type="text/css">
-    .container { background: #a33; transition: width; resize: both; }
-    .editor { background: #045; color:#fff; opacity: 0.6; }
 
-
-    </style>
-    <script type="text/javascript">
-        var btnTrigerResize = document.getElementById("btnTrigerResize"),
-            btnResizeContainer = document.getElementById("btnResizeContainer"),
-            editorElement = document.getElementById("editor"),
-            containerElement =editorElement.parentNode,
-
-            sizes = [{w:100, h: 200 },{w:400, h: 250 },{w:600, h: 700 }],
-            currentSizeIndex = 0,
-            toggleResize = function(){
-                currentSizeIndex = (currentSizeIndex + 1) % sizes.length;
-                var currentSize = sizes[currentSizeIndex];
-                containerElement.style.width = currentSize.w + "px";
-                containerElement.style.height = currentSize.h + "px";
-            },
-            resizeEditor = function(){
-                editorElement.style.width = containerElement.clientWidth+ "px";
-                editorElement.style.height = containerElement.clientHeight + "px";
-                editorElement.innerHTML = editorElement.style.width + " x " + editorElement.style.height;
-            },
-            init = function(){
-                var currentSize = sizes[currentSizeIndex];
-                containerElement.style.width = currentSize.w + "px";
-                containerElement.style.height = currentSize.h + "px";
-                resizeEditor();
-            },
-            onContainerResize = function(){
-                resizeEditor();
-            },
-            onBtnTrigerResizeClicked = function(){
-                resizeEditor();
-            },
-            onBtnResizeContainer = function(){
-                toggleResize();
-            };
-
-            init();
-            var addEvent = function(el, name, cb) {
-                if (el.attachEvent) {
-                    el.attachEvent('on' + name, cb);
-                } else {
-                    el.addEventListener(name, cb);
-                }
-            };
-
-            btnTrigerResize.onclick = onBtnTrigerResizeClicked;
-            btnResizeContainer.onclick = onBtnResizeContainer;
-            window.onresize = onContainerResize;
-            containerElement.style.transition = "width 0.0001s";
-            containerElement.style.webkitTransition = "width 0.0001s";
-            containerElement.style.oTransition = "width 0.0001s";
-            containerElement.style.MSTransition = "width 0.0001s";
-            addEvent(containerElement, "transitionEnd", onContainerResize);
-            addEvent(containerElement, "webkitTransitionEnd", onContainerResize);
-            addEvent(containerElement, "oTransitionEnd", onContainerResize);
-            addEvent(containerElement, "MSTransitionEnd", onContainerResize);
-            
-
-            
-    </script>
+    <script type="text/javascript" src="js/resizeEvent.js"></script>
+    <script type="text/javascript" src="js/demo.js"></script>
     </body>
 </html>
