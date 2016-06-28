@@ -1,7 +1,7 @@
 # ResizableElement
 Triggering resize event on any element without using setTimeout and requestAnimationFrame
 
-Tested on: 
+#Tested on: 
 - IE11
 - IE10 (emulated on IE11) TODO: check on real browser
 - IE9 (emulated on IE9) TODO: check on real browser
@@ -11,7 +11,7 @@ Tested on:
 - Chrome 51
 - Firefox 49.0a
 
-TODO:
+#TODO:
 - test for compatibility
 - test on old firefox (<=3.6)
 - test on old IE versions
@@ -20,13 +20,15 @@ TODO:
 - test on Mobile devices
 - some automatic testing
 
-REQUIREMENTS FOR TESTING:
+#REQUIREMENTS FOR TESTING:
 - npm
 - http-server (npm install http-server -g)
 
-USAGE:
+#USAGE:
+```
 var element = document.getElementById("container");
 createResizeEvent(element);
 element.addEventListener("resize", function(){
     console.log("resized");
 });
+```
