@@ -1,5 +1,5 @@
 # ResizableElement
-Resizing child element without using setTimeout and requestAnimationFrame
+Triggering resize event on any element without using setTimeout and requestAnimationFrame
 
 Tested on: 
 - IE11
@@ -23,3 +23,10 @@ TODO:
 REQUIREMENTS FOR TESTING:
 - npm
 - http-server (npm install http-server -g)
+
+USAGE:
+var element = document.getElementById("container");
+createResizeEvent(element);
+element.addEventListener("resize", function(){
+    console.log("resized");
+});
